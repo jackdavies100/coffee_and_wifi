@@ -1,40 +1,76 @@
 {% include "header.html" %}
 <head>
-
     <meta charset="UTF-8">
     <title>Cafe&Wifi API</title>
-
 </head>
 <body>
 <!-- Main Content-->
-<h1>Welcome to the Cafe & Wifi API</h1>
+
 <div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
-    <div class="col-md-10 col-lg-8 col-xl-7">
-      <!-- Post preview-->
-      {% for cafe in cafes %}
-      <div class="post-preview">
-        <a href="#">
-          <h2 class="cafe-name">{{ cafe.name }}</h2>
-        </a>
-          <h2 class="cafe-location">{{ cafe.location }}</h2>
-          <h3 class="coffee-price">Price of A coffee{{ cafe.coffee_price }}</h3>
-          <h3 class="cafe-seats">Number of seats: {{ cafe.seats }}</h3>
-          <img class="image" src={{ cafe.img_url}}>
-      </div>
-      <!-- Divider-->
-      <hr class="my-4" />
-      {% endfor %}
-
-
-      <!-- Pager-->
-      <div class="d-flex justify-content-end mb-4">
-        <a class="btn btn-secondary text-uppercase" href="#!">Add a new cafe! →</a>
-      </div>
 
     </div>
   </div>
 </div>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">London Cafes</h1>
+        <p class="lead text-body-secondary">In London's bustling streets, where time seems to slow,
+Discover hidden gems where coffee's rich flow.
+In cozy corners, with vibes serene and bright,
+Find solace in a sip, amidst the city's delightful light.
+Let each aromatic brew, a story to unfold,
+In London's cafe culture, find moments pure as gold.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Search by location</a>
+          <a href="#" class="btn btn-secondary my-2">Random</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for cafe in cafes %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ cafe.img_url }}" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ cafe.name }}</h5>
+              <p class="card-text">{{ cafe.location }}</p>
+              <p class="card-text">Price of A coffee: {{ cafe.coffee_price }}</p>
+              <p class="card-text">Number of seats: {{ cafe.seats }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Location</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div>
+
+      </div>
+        <!-- New Post -->
+      <div class="d-flex justify-content-end mb-4">
+        <a
+          class="btn btn-primary flex-left"
+          href="!#"
+          >Add a new Cafe!</a
+        >
+      </div>
+    </div>
+  </div>
+
+</main>
 
 </body>
 </html>
