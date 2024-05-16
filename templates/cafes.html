@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+{% include "header.html" %}
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cafe&Wifi API</title>
+
 </head>
 <body>
+<!-- Main Content-->
+<h1>Welcome to the Cafe & Wifi API</h1>
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <!-- Post preview-->
+      {% for cafe in cafes %}
+      <div class="post-preview">
+        <a href="#">
+          <h2 class="cafe-name">{{ cafe.name }}</h2>
+        </a>
+          <h2 class="cafe-location">{{ cafe.location }}</h2>
+          <h3 class="coffee-price">Price of A coffee{{ cafe.coffee_price }}</h3>
+          <h3 class="cafe-seats">Number of seats: {{ cafe.seats }}</h3>
+          <img class="image" src={{ cafe.img_url}}>
+      </div>
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% endfor %}
+
+
+      <!-- Pager-->
+      <div class="d-flex justify-content-end mb-4">
+        <a class="btn btn-secondary text-uppercase" href="#!">Add a new cafe! →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

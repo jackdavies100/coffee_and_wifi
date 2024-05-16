@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Boolean
@@ -17,6 +18,7 @@ This will install the packages from requirements.txt for this project.
 '''
 
 app = Flask(__name__)
+Bootstrap5(app)
 
 # CREATE DB
 class Base(DeclarativeBase):
@@ -63,6 +65,11 @@ with app.app_context():
 def home():
     return render_template("index.html")
 
+@app.route("/cafes", methods=["GET"])
+def cafes():
+        result = db.session.execute(db.select(Cafe))
+        cafes = result.scalars().all()
+        return render_template("cafes.html", cafes=cafes)
 
 # HTTP GET - Read Record
 @app.route("/random", methods=["GET"])
@@ -89,7 +96,7 @@ def all_cafe():
     result = db.session.execute(db.select(Cafe))
     all_cafes = result.scalars().all()
     cafes_as_dict = [cafe.to_dict() for cafe in all_cafes]
-    return jsonify(cafe=cafes_as_dict)
+    return jsonify(cafes=cafes_as_dict)
 
 @app.route("/search", methods=["GET"])
 def search_cafe():
