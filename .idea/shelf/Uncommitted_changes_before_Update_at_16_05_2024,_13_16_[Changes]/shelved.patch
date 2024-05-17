@@ -1,0 +1,266 @@
+Index: static/css/styles.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.form-control-dark {\n  border-color: var(--bs-gray);\n}\n.form-control-dark:focus {\n  border-color: #fff;\n  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);\n}\n\n.text-small {\n  font-size: 85%;\n}\n\n.dropdown-toggle:not(:focus) {\n  outline: 0;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/static/css/styles.css b/static/css/styles.css
+--- a/static/css/styles.css	(revision bfa60583f3de6be02e77b0cd50e85e3baf4c758e)
++++ b/static/css/styles.css	(date 1715860886993)
+@@ -13,3 +13,67 @@
+ .dropdown-toggle:not(:focus) {
+   outline: 0;
+ }
++
++/*
++ * Globals
++ */
++
++
++/* Custom default button */
++.btn-light,
++.btn-light:hover,
++.btn-light:focus {
++  color: #333;
++  text-shadow: none; /* Prevent inheritance from `body` */
++}
++
++
++/*
++ * Base structure
++ */
++
++body {
++  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
++  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
++}
++
++.cover-container {
++  max-width: 42em;
++}
++
++
++/*
++ * Header
++ */
++
++.nav-masthead .nav-link {
++  color: rgba(255, 255, 255, .5);
++  border-bottom: .25rem solid transparent;
++}
++
++.nav-masthead .nav-link:hover,
++.nav-masthead .nav-link:focus {
++  border-bottom-color: rgba(255, 255, 255, .25);
++}
++
++.nav-masthead .nav-link + .nav-link {
++  margin-left: 1rem;
++}
++
++.nav-masthead .active {
++  color: #fff;
++  border-bottom-color: #fff;
++}
++
++html,
++body {
++    height: 100%;
++}
++
++.cover-container {
++    min-height: 100%;
++}
++
++footer {
++    margin-top: auto;
++}
+\ No newline at end of file
+Index: templates/cafes.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% include \"header.html\" %}\n<head>\n\n    <meta charset=\"UTF-8\">\n    <title>Cafe&Wifi API</title>\n\n</head>\n<body>\n<!-- Main Content-->\n<h1>Welcome to the Cafe & Wifi API</h1>\n<div class=\"container px-4 px-lg-5\">\n  <div class=\"row gx-4 gx-lg-5 justify-content-center\">\n    <div class=\"col-md-10 col-lg-8 col-xl-7\">\n      <!-- Post preview-->\n      {% for cafe in cafes %}\n      <div class=\"post-preview\">\n        <a href=\"#\">\n          <h2 class=\"cafe-name\">{{ cafe.name }}</h2>\n        </a>\n          <h2 class=\"cafe-location\">{{ cafe.location }}</h2>\n          <h3 class=\"coffee-price\">Price of A coffee{{ cafe.coffee_price }}</h3>\n          <h3 class=\"cafe-seats\">Number of seats: {{ cafe.seats }}</h3>\n          <img class=\"image\" src={{ cafe.img_url}}>\n      </div>\n      <!-- Divider-->\n      <hr class=\"my-4\" />\n      {% endfor %}\n\n\n      <!-- Pager-->\n      <div class=\"d-flex justify-content-end mb-4\">\n        <a class=\"btn btn-secondary text-uppercase\" href=\"#!\">Add a new cafe! →</a>\n      </div>\n\n    </div>\n  </div>\n</div>\n\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/cafes.html b/templates/cafes.html
+--- a/templates/cafes.html	(revision bfa60583f3de6be02e77b0cd50e85e3baf4c758e)
++++ b/templates/cafes.html	(date 1715859930470)
+@@ -1,40 +1,76 @@
+ {% include "header.html" %}
+ <head>
+-
+     <meta charset="UTF-8">
+     <title>Cafe&Wifi API</title>
+-
+ </head>
+ <body>
+ <!-- Main Content-->
+-<h1>Welcome to the Cafe & Wifi API</h1>
++
+ <div class="container px-4 px-lg-5">
+   <div class="row gx-4 gx-lg-5 justify-content-center">
+-    <div class="col-md-10 col-lg-8 col-xl-7">
+-      <!-- Post preview-->
+-      {% for cafe in cafes %}
+-      <div class="post-preview">
+-        <a href="#">
+-          <h2 class="cafe-name">{{ cafe.name }}</h2>
+-        </a>
+-          <h2 class="cafe-location">{{ cafe.location }}</h2>
+-          <h3 class="coffee-price">Price of A coffee{{ cafe.coffee_price }}</h3>
+-          <h3 class="cafe-seats">Number of seats: {{ cafe.seats }}</h3>
+-          <img class="image" src={{ cafe.img_url}}>
+-      </div>
+-      <!-- Divider-->
+-      <hr class="my-4" />
+-      {% endfor %}
++
++    </div>
++  </div>
++</div>
++
++<main>
++
++  <section class="py-5 text-center container">
++    <div class="row py-lg-5">
++      <div class="col-lg-6 col-md-8 mx-auto">
++        <h1 class="fw-light">London Cafes</h1>
++        <p class="lead text-body-secondary">In London's bustling streets, where time seems to slow,
++Discover hidden gems where coffee's rich flow.
++In cozy corners, with vibes serene and bright,
++Find solace in a sip, amidst the city's delightful light.
++Let each aromatic brew, a story to unfold,
++In London's cafe culture, find moments pure as gold.</p>
++        <p>
++          <a href="#" class="btn btn-primary my-2">Search by location</a>
++          <a href="#" class="btn btn-secondary my-2">Random</a>
++        </p>
++      </div>
++    </div>
++  </section>
++
++  <div class="album py-5 bg-body-tertiary">
++    <div class="container">
++
++      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
++        {% for cafe in cafes %}
++        <div class="col">
++          <div class="card shadow-sm">
++            <img src="{{ cafe.img_url }}" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" alt="...">
++            <div class="card-body">
++              <h5 class="card-title">{{ cafe.name }}</h5>
++              <p class="card-text">{{ cafe.location }}</p>
++              <p class="card-text">Price of A coffee: {{ cafe.coffee_price }}</p>
++              <p class="card-text">Number of seats: {{ cafe.seats }}</p>
++              <div class="d-flex justify-content-between align-items-center">
++                <div class="btn-group">
++                  <button type="button" class="btn btn-sm btn-outline-secondary">Location</button>
++                </div>
++              </div>
++            </div>
++          </div>
++        </div>
++        {% endfor %}
++      </div>
++      <div>
+ 
+-
+-      <!-- Pager-->
++      </div>
++        <!-- New Post -->
+       <div class="d-flex justify-content-end mb-4">
+-        <a class="btn btn-secondary text-uppercase" href="#!">Add a new cafe! →</a>
++        <a
++          class="btn btn-primary flex-left"
++          href="!#"
++          >Add a new Cafe!</a
++        >
+       </div>
+-
+     </div>
+   </div>
+-</div>
++
++</main>
+ 
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+Index: templates/header.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"description\" content=\"\" />\n    <meta name=\"author\" content=\"\" />\n    <title>Clean Blog - Start Bootstrap Theme</title>\n    {% block styles %}\n    <!-- Load Bootstrap-Flask CSS here -->\n    {{ bootstrap.load_css() }}\n        <link\n      rel=\"icon\"\n      type=\"image/x-icon\"\n      href=\"{{ url_for('static', filename='assets/favicon.ico') }}\"\n    />\n    <!-- Font Awesome icons (free version)-->\n    <script\n      src=\"https://use.fontawesome.com/releases/v6.3.0/js/all.js\"\n      crossorigin=\"anonymous\"\n    ></script>\n    <!-- Google fonts-->\n    <link\n      href=\"https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic\"\n      rel=\"stylesheet\"\n      type=\"text/css\"\n    />\n    <link\n      href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800\"\n      rel=\"stylesheet\"\n      type=\"text/css\"\n    />\n    <!-- Core theme CSS (includes Bootstrap)-->\n    <link\n      href=\"{{ url_for('static', filename='css/styles.css') }}\"\n      rel=\"stylesheet\"\n    />\n    {% endblock %}\n      <header>\n          <div class=\"px-3 py-2 text-bg-dark border-bottom\">\n            <div class=\"container\">\n              <div class=\"d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start\">\n                <a href=\"/\" class=\"d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none\">\n                  <svg class=\"bi me-2\" width=\"40\" height=\"32\" role=\"img\" aria-label=\"Bootstrap\"><use xlink:href=\"#bootstrap\"></use></svg>\n                </a>\n\n                <ul class=\"nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small\">\n                  <li>\n                    <a href=\"#\" class=\"nav-link text-secondary\">\n                      <svg class=\"bi d-block mx-auto mb-1\" width=\"24\" height=\"24\"><use xlink:href=\"#home\"></use></svg>\n                      Home\n                    </a>\n                  </li>\n                  <li>\n                    <a href=\"#\" class=\"nav-link text-white\">\n                      <svg class=\"bi d-block mx-auto mb-1\" width=\"24\" height=\"24\"><use xlink:href=\"#speedometer2\"></use></svg>\n                       All Cafes\n                    </a>\n                  </li>\n                  <li>\n                    <a href=\"#\" class=\"nav-link text-white\">\n                      <svg class=\"bi d-block mx-auto mb-1\" width=\"24\" height=\"24\"><use xlink:href=\"#table\"></use></svg>\n                      Coffee\n                    </a>\n                  </li>\n                  <li>\n                    <a href=\"#\" class=\"nav-link text-white\">\n                      <svg class=\"bi d-block mx-auto mb-1\" width=\"24\" height=\"24\"><use xlink:href=\"#grid\"></use></svg>\n                      Wifi\n                    </a>\n                  </li>\n                  <li>\n                    <a href=\"#\" class=\"nav-link text-white\">\n                      <svg class=\"bi d-block mx-auto mb-1\" width=\"24\" height=\"24\"><use xlink:href=\"#people-circle\"></use></svg>\n                      Add a new Cafe\n                    </a>\n                  </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n          <div class=\"px-3 py-2 border-bottom mb-3\">\n            <div class=\"container d-flex flex-wrap justify-content-center\">\n              <form class=\"col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto\" role=\"search\">\n                <input type=\"search\" class=\"form-control\" placeholder=\"Search...\" aria-label=\"Search\">\n              </form>\n\n              <div class=\"text-end\">\n                <button type=\"button\" class=\"btn btn-light text-dark me-2\">Login</button>\n                <button type=\"button\" class=\"btn btn-primary\">Sign-up</button>\n              </div>\n            </div>\n          </div>\n        </header>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/header.html b/templates/header.html
+--- a/templates/header.html	(revision bfa60583f3de6be02e77b0cd50e85e3baf4c758e)
++++ b/templates/header.html	(date 1715861756879)
+@@ -42,9 +42,12 @@
+       <header>
+           <div class="px-3 py-2 text-bg-dark border-bottom">
+             <div class="container">
++
+               <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                 <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                   <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
++<i class="fas fa-coffee"></i>
++                    <strong>London Cafes</strong>
+                 </a>
+ 
+                 <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+@@ -87,11 +90,6 @@
+               <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+               </form>
+-
+-              <div class="text-end">
+-                <button type="button" class="btn btn-light text-dark me-2">Login</button>
+-                <button type="button" class="btn btn-primary">Sign-up</button>
+-              </div>
+             </div>
+           </div>
+         </header>
+\ No newline at end of file
+Index: templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% include \"header.html\" %}\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Cafe&Wifi API</title>\n</head>\n<body>\n    <h1>Welcome to the Cafe & Wifi API</h1>\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/index.html b/templates/index.html
+--- a/templates/index.html	(revision bfa60583f3de6be02e77b0cd50e85e3baf4c758e)
++++ b/templates/index.html	(date 1715860957820)
+@@ -1,9 +1,24 @@
+ {% include "header.html" %}
++
++<html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <title>Cafe&Wifi API</title>
++    <link rel="stylesheet" href="styles.css"> <!-- Include your custom CSS file -->
+ </head>
+-<body>
+-    <h1>Welcome to the Cafe & Wifi API</h1>
++<body class="d-flex flex-column h-100"> <!-- Add class to make body a flex container -->
++
++  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
++
++    <main class="px-3 text-center">
++      <h1>London Cafes</h1>
++      <p class="lead">Let's find you a coffee.</p>
++      <p class="lead">
++        <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">&#9749;</a>
++      </p>
++    </main>
++
++  </div>
++
+ </body>
+-</html>
+\ No newline at end of file
++</html>

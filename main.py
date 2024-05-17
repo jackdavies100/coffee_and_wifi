@@ -130,6 +130,10 @@ def search_cafe():
 
 
 # HTTP POST - Create Record
+@app.route("/add", methods=["GET"])
+def add_cafe_form():
+    return render_template("add.html")
+
 @app.route("/add", methods=["POST"])
 def post_new_cafe():
     new_cafe = Cafe(

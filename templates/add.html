@@ -1,10 +1,45 @@
+<!-- templates/add.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cafe</title>
 </head>
 <body>
+    <h1>Add a New Cafe</h1>
+    <form action="/add" method="post">
+        <label for="name">Cafe Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
 
+        <label for="map_url">Map URL:</label>
+        <input type="text" id="map_url" name="map_url" required><br><br>
+
+        <label for="img_url">Image URL:</label>
+        <input type="text" id="img_url" name="img_url" required><br><br>
+
+        <label for="loc">Location:</label>
+        <input type="text" id="loc" name="loc" required><br><br>
+
+        <label for="sockets">Has Sockets (True/False):</label>
+        <input type="text" id="sockets" name="sockets" required><br><br>
+
+        <label for="toilet">Has Toilet (True/False):</label>
+        <input type="text" id="toilet" name="toilet" required><br><br>
+
+        <label for="wifi">Has WiFi (True/False):</label>
+        <input type="text" id="wifi" name="wifi" required><br><br>
+
+        <label for="calls">Can Take Calls (True/False):</label>
+        <input type="text" id="calls" name="calls" required><br><br>
+
+        <label for="seats">Seats:</label>
+        <input type="text" id="seats" name="seats" required><br><br>
+
+        <label for="coffee_price">Coffee Price:</label>
+        <input type="text" id="coffee_price" name="coffee_price"><br><br>
+
+        <button type="submit">Add Cafe</button>
+    </form>
 </body>
 </html>
